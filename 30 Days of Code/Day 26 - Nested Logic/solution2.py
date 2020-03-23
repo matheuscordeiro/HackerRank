@@ -9,17 +9,14 @@ Your local library needs your help! Given the expected and actual return dates f
  - If the book is returned after the calendar year in which it was expected, there is a fixed fine of 10000 Hackos.
 """
 
-import datetime
 return_date=list(map(int, input().rstrip().split()))
 expected_date=list(map(int, input().rstrip().split()))
-return_date=datetime.date(day=return_date[0], month=return_date[1], year=return_date[2])
-expected_date=datetime.date(day=expected_date[0], month=expected_date[1], year=expected_date[2])
 
-if return_date <= expected_date:
+if return_date[0] <= expected_date[0] and return_date[1] <= expected_date[1] and return_date[2] <= expected_date[2]:
     print('0')
-elif return_date.year > expected_date.year:
+elif return_date[2] > expected_date[2]:
     print('10000')
-elif return_date.month > expected_date.month:
-    print(f'{500 * (return_date.month - expected_date.month)}')
+elif return_date[1] > expected_date[1]:
+    print(f'{500 * (return_date[1] - expected_date[1])}')
 else:
-    print(f'{15 * (return_date.day - expected_date.day)}')
+    print(f'{15 * (return_date[0] - expected_date[0])}')
