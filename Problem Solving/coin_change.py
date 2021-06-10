@@ -1,7 +1,7 @@
 def getWays(n, c):
     ways = [0] * (n+1)
     ways[0] = 1
-    for i, coin in enumerate(c):
+    for coin in c:
         for j in range(len(ways)):
             if coin <= j:
                 ways[j] += ways[j-coin]
