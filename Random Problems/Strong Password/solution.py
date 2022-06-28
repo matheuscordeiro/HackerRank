@@ -1,7 +1,7 @@
 QTD_CONDITIONS = 4
 MIN_LENGTH = 6
 
-def minimumNumber(n, password):
+def minimum_number(password):
     numbers = dict.fromkeys("0123456789", True)
     lower_case = dict.fromkeys("abcdefghijklmnopqrstuvwxyz", True)
     upper_case = dict.fromkeys("ABCDEFGHIJKLMNOPQRSTUVWXYZ", True)
@@ -19,15 +19,17 @@ def minimumNumber(n, password):
         elif character in upper_case and not frequency.get("upper_case"):
             frequency["upper_case"] = True
             conditions += 1
-        if character in special_characters and not frequency.get("special_characters"):
+        elif character in special_characters and not frequency.get("special_characters"):
             frequency["special_characters"] = True
             conditions += 1
     
-    if MIN_LENGTH - n > QTD_CONDITIONS - conditions:
-        return MIN_LENGTH - n
-    else:
-        return QTD_CONDITIONS - conditions
-
+    return max(QTD_CONDITIONS - conditions, MIN_LENGTH - len(password))
+    
 
 if __name__ == "__main__":
-    print(minimumNumber(5, "2bbbb"))
+    print(minimum_number("2opeaz"))
+    print(minimum_number("2bb#A"))
+    print(minimum_number("Ab1"))
+    print(minimum_number("1"))
+    print(minimum_number("1oPe@z"))
+    print(minimum_number("aaaaa"))
